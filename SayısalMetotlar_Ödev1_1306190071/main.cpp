@@ -10,9 +10,9 @@ float derivative_f(float x){
 }
 bool bisection_method(){
     int maxit = 100;
-    int a = 1;
-    int b = 2;
-    int i = 1;
+    float a = 1;
+    float b = 2;
+    float i = 1;
     float tol = 1E-3;
     float FA = f(a);
     while(i<=maxit){
@@ -23,11 +23,14 @@ bool bisection_method(){
             return true;
         }
         i++;
+        cout<<FA<<" "<<FP<<endl;
         if(FA*FP>0){
             a=p;
             FA = FP;
         }
-        else b=p;
+        else{
+            b=p;
+        }
     }
     cout<<"Method failed after maximum number of iterations, maxit =',maxit"<<endl;
     return false;
@@ -35,14 +38,14 @@ bool bisection_method(){
 
 bool newtonRaphson_method(){
     int maxit = 100;
-    int a = 1;
-    int b = 2;
-    int i = 1;
+    float a = 1;
+    float b = 2;
+    float i = 1;
     float tol = 1E-3;
+    float p0 = a;
     while(i<=maxit){
-        float p0 = a;
         float p = p0 - f(p0)/ derivative_f(p0);
-        if(p-p0<tol && p-p0>-tol){
+        if(abs(p-p0)<tol){
             cout<<p<<endl;
             return true;
         }
@@ -55,7 +58,9 @@ bool newtonRaphson_method(){
 
 int main()
 {
+    cout<<"Newton-Raphson Method's solution:"<<endl;
     bool a = newtonRaphson_method();
+    cout<<"Bisection Method's solution:"<<endl;
     bool b = bisection_method();
     return 0;
 }
