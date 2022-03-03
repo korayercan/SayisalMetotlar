@@ -10,15 +10,15 @@ float derivative_f(float x){
 }
 bool bisection_method(){
     int maxit = 100;
-    float a = 1;
-    float b = 2;
+    float a = 0;
+    float b = 1;
     float i = 1;
     float tol = 1E-3;
     float FA = f(a);
     while(i<=maxit){
         float p = (a+b)/2;
         float FP = f(p);
-        if(FP==0 || (b-a)/2<tol){
+        if(FP==0 || (a-b)/2<tol){
             cout<<p<<endl;
             return true;
         }
@@ -38,8 +38,8 @@ bool bisection_method(){
 
 bool newtonRaphson_method(){
     int maxit = 100;
-    float a = 1;
-    float b = 2;
+    float a = 0;
+    float b = 1;
     float i = 1;
     float tol = 1E-3;
     float p0 = a;
