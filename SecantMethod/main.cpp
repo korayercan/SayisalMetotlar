@@ -9,28 +9,26 @@ float f(float x) {
 float df(float x) {
 	return (f(x - 1) - f(x)) / -1;
 }
-
-
 int main() {
-	int i = 1;
-	double a,b,xn, h, xn1, epsilon;
-	cout << "Baþlangýç deðeri giriniz : " << endl;
-	cin >> xn;
-
-	cout << "Hata payýný giriniz : " << endl;
-	cin >> epsilon;
-
-	cout << "n " << "  " << " pn " << endl;
-	cout << "------------------" << endl;
-
-	xn1 = xn - f(xn) / df(xn);
-	cout << xn1 << endl;
-	while (abs(xn1 - xn) >= epsilon) {
-		xn = xn1;
-		xn1 = xn - f(xn) / df(xn);
-		cout << i << "  " << xn << "  " << xn1 << endl;
-		i++;
-	}
-
+	float p,p0,p1,TOL,N0;
+	cin>>p0;
+    cin>>p1;
+    cin>>TOL;
+    cin>>N0;
+    int i = 2;
+    float q0 = f(p0);
+    float q1 = f(p1);
+    while(i<=N0){
+        p=p1-q1(p1-p0)/(q1-q0);
+        if(abs(p-p1)<TOL){
+            cout<<p;
+            break;
+        }
+        i=i+1;
+        p0=p1;
+        q0=q1;
+        p1=p;
+        q1=f(p);
+    }
 	return 0;
 }
